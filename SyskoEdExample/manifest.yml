@@ -1,0 +1,8 @@
+---
+applications:
+- name: example
+  memory: 512M
+  host: mongodb-syskoed
+  path: target/syskoed-example-1.0-SNAPSHOT.jar
+  services:
+  - mongo-service
