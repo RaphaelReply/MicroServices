@@ -155,6 +155,9 @@ One example of an Message broker is RabbitMQ.
 -  Centralized Authentication/Authorization
 -  Load Balancing
 
+![alt text](https://github.com/RaphaelReply/MicroServices/raw/master/pictures/gateway.png "API Gateway")
+
+
 One example for this is Netflix Zuul.
 
 
@@ -165,12 +168,13 @@ The two ways for service discovery are:
 - Client-side discorvery
 
   On doing a request to a service, the client receives the location identifier the service by querying the Service Registry, which knows all service instances.
+![alt text](https://github.com/RaphaelReply/MicroServices/raw/master/pictures/clientside.png "Client-side discovery")
 - Server-side service discovery
 
   On doing a request to a service, the client makes a request via a router that runs at a well known location. The router queries a service registry, which might be built into the router, and forwards the request to an available service instance.
+![alt text](https://github.com/RaphaelReply/MicroServices/raw/master/pictures/serverside.png "Server-side discovery")
 
-
-One example client-side discovery is Netflix Eureka.
+One example client-side discovery is Netflix Eureka in combination with the Ribbon client.
 
 ##### Messaging
 In addition to remote procedure calls via REST which are synchronous also asynchronous messaging is needed. Therefore a message broker with message queues are necessary to also enable message buffering, re-submission  and so on.
@@ -185,26 +189,28 @@ One example to apply respective pattern to make the rpc calls more resilient is 
 
 ### Demo
 
-https://www.infoq.com/articles/boot-microservices
-
+Get the code
 ```sh
 $ git clone https://github.com/RaphaelReply/MicroServices.git <your_location>
 ```
 
+Build it
 ```sh
 $ cd <your_location>/SyskoEdExample
 $ mvn package
 ```
 
+Push it to cloud foundry
 ```sh
 $ cf login
 $ cf push
 ```
 
+Do requests
 ```sh
 $ curl -i -X DELETE https://mongodb-syskoed.cfapps.us10.hana.ondemand.com
 $ curl -i -X GET https://mongodb-syskoed.cfapps.us10.hana.ondemand.com
-$ curl -i -H "Content-Type: application/json" -X POST -d '{"salutation":"Herr","firstname":"Zlatan","lastname":"Ibra"}' https://mongodb-syskoed.cfapps.us10.hana.ondemand.com
+$ curl -i -H "Content-Type: application/json" -X POST -d '{"salutation":"Herr","firstname":"Zlatan","lastname":"Ibrahimovic"}' https://mongodb-syskoed.cfapps.us10.hana.ondemand.com
 ```
 
 
