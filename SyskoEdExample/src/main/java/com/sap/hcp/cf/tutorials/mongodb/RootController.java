@@ -39,11 +39,6 @@ public class RootController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> createCustomer(@RequestBody Customer inputCustomer) throws AppException {
 
-		// , produces = MediaType.APPLICATION_XML_VALUE
-		// curl -H "Content-Type: application/json" -X POST -d
-		// '{"salutation":"Herr","firstname":"Zlatan","lastname":"Ibra"}'
-		// https://mongodb-syskoed.cfapps.us10.hana.ondemand.com
-
 		if (inputCustomer == null)
 			throw new AppException(HttpStatus.BAD_REQUEST, // 400
 					"No creation possible", "The customers was null, so no customer was given via JSON as input");
